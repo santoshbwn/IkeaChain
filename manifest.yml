@@ -8,7 +8,6 @@ applications:
   name: car-lease-demo-1
   command: node app.js
   path: .
-  host: IKEA_CHAIN
   instances: 1
   memory: 512M
   services:
