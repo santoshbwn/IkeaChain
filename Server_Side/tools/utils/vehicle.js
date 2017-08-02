@@ -12,42 +12,42 @@ class Vehicle {
 
     create(userId) {
         let securityContext = this.usersToSecurityContext[userId];
-        let v5cID = Vehicle.newV5cID();
+        let skuID = Vehicle.newSkuID();
 
-        return this.doesV5cIDExist(userId, v5cID)
+        return this.doesSkuIDExist(userId, skuID)
         .then(function() {
-            return Util.invokeChaincode(securityContext, 'create_vehicle', [ v5cID ])
+            return Util.invokeChaincode(securityContext, 'create_Sku', [ skuID ])
             .then(function() {
-                return v5cID;
+                return skuID;
             });
         });
     }
 
-    transfer(userId, buyer, functionName, v5cID) {
-        return this.updateAttribute(userId, functionName , buyer, v5cID);
+    transfer(userId, buyer, functionName, skuID) {
+        return this.updateAttribute(userId, functionName , buyer, skuID);
     }
 
-    updateAttribute(userId, functionName, value, v5cID) {
+    updateAttribute(userId, functionName, value, skuID) {
         let securityContext = this.usersToSecurityContext[userId];
-        return Util.invokeChaincode(securityContext, functionName, [ value, v5cID ]);
+        return Util.invokeChaincode(securityContext, functionName, [ value, skuID ]);
     }
 
-    doesV5cIDExist(userId, v5cID) {
+    doesSkuIDExist(userId, skuID) {
         let securityContext = this.usersToSecurityContext[userId];
-        return Util.queryChaincode(securityContext, 'check_unique_v5c', [ v5cID ]);
+        return Util.queryChaincode(securityContext, 'check_unique_v5c', [ skuID ]);
     }
 
-    static newV5cID() {
+    static newSkuID() {
         let numbers = '1234567890';
         let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let v5cID = '';
+        let skuID = '';
         for(let i = 0; i < 7; i++)
             {
-            v5cID += numbers.charAt(Math.floor(Math.random() * numbers.length));
+            skuID += numbers.charAt(Math.floor(Math.random() * numbers.length));
         }
-        v5cID = characters.charAt(Math.floor(Math.random() * characters.length)) + v5cID;
-        v5cID = characters.charAt(Math.floor(Math.random() * characters.length)) + v5cID;
-        return v5cID;
+        skuID = characters.charAt(Math.floor(Math.random() * characters.length)) + skuID;
+        skuID = characters.charAt(Math.floor(Math.random() * characters.length)) + skuID;
+        return skuID;
     }
 }
 
