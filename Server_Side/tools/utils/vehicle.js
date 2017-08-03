@@ -40,7 +40,7 @@ class Vehicle {
     static newSkuID() {
         let numbers = '1234567890';
         let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let skuID = '';
+        let skuID = 'Sku';
         for(let i = 0; i < 7; i++)
             {
             skuID += numbers.charAt(Math.floor(Math.random() * numbers.length));
